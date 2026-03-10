@@ -19,23 +19,27 @@ Python CLI tool for analyzing ML model predictions for bias. Built as a demo pro
 
 These are instructions for the **orchestrator** (you). You manage the phases, pick the right agent and model for each step, and gate human approvals.
 
-### Phase 1: Issue & Feasibility (opus)
-1. Spawn `@python-developer` with `model: opus` to read the issue, assess feasibility, and ask blocking questions via `AskUserQuestion`.
+### Phase 0: Issue Creation (opus)
+1. Spawn `@business-analyst` with `model: opus` to create a well-structured GitHub issue from the feature request. Must meet the Definition of Ready.
+2. **Stop. Present issue to human for approval.** Do not proceed until approved.
+
+### Phase 1: Feasibility (opus)
+3. Spawn `@python-developer` with `model: opus` to read the issue, assess feasibility, and ask blocking questions via `AskUserQuestion`.
 
 ### Phase 2: Design (opus)
-2. Spawn `@python-developer` with `model: opus` to create a design document (approach, data models, test strategy).
-3. Spawn a **fresh opus agent** (not python-developer — a new general-purpose instance with `model: opus`) with an adversarial review prompt to try to break the design.
-4. If the reviewer finds issues, send them back to `@python-developer` (opus) to fix. Repeat steps 3-4 until the review passes.
-5. **Stop. Present design to human for approval.** Do not proceed until approved.
+4. Spawn `@python-developer` with `model: opus` to create a design document (approach, data models, test strategy).
+5. Spawn a **fresh opus agent** (not python-developer — a new general-purpose instance with `model: opus`) with an adversarial review prompt to try to break the design.
+6. If the reviewer finds issues, send them back to `@python-developer` (opus) to fix. Repeat steps 5-6 until the review passes.
+7. **Stop. Present design to human for approval.** Do not proceed until approved.
 
 ### Phase 3: Implementation (sonnet)
-6. Spawn `@python-developer` with `model: sonnet` to implement using TDD — tests FIRST (one per acceptance criterion), then implementation. Must run `pytest` and `ruff check` before completing.
-7. Spawn a **fresh opus agent** with an adversarial review prompt to try to break the code.
-8. If the reviewer finds issues, send them back to `@python-developer` (sonnet) to fix. Repeat steps 7-8 until the review passes.
-9. **Stop. Present implementation to human for approval.** Do not proceed until approved.
+8. Spawn `@python-developer` with `model: sonnet` to implement using TDD — tests FIRST (one per acceptance criterion), then implementation. Must run `pytest` and `ruff check` before completing.
+9. Spawn a **fresh opus agent** with an adversarial review prompt to try to break the code.
+10. If the reviewer finds issues, send them back to `@python-developer` (sonnet) to fix. Repeat steps 9-10 until the review passes.
+11. **Stop. Present implementation to human for approval.** Do not proceed until approved.
 
 ### Phase 4: PR
-10. Create PR linking to the issue.
+12. Create PR linking to the issue.
 
 ### Model Selection
 
@@ -43,6 +47,7 @@ Use the right model for the right job. Always set `model` explicitly when spawni
 
 | Phase | Agent | Model | Why |
 |-------|-------|-------|-----|
+| Issue creation | business-analyst | opus | Requirements need precision and domain understanding |
 | Feasibility | python-developer | opus | Deep reasoning about scope and risks |
 | Design | python-developer | opus | Architectural decisions need depth |
 | Design review | fresh general-purpose | opus | Adversarial review needs cognitive depth + fresh eyes |

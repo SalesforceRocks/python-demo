@@ -28,6 +28,11 @@ Python CLI tool for analyzing ML model predictions for bias. Built as a demo pro
 9. **Fix code issues** until the review passes.
 10. **Get human approval**, then create PR.
 
+## Standards
+
+- **Definition of Ready**: `docs/standards/definition-of-ready.md`
+- **Definition of Done**: `docs/standards/definition-of-done.md`
+
 ## Non-Negotiables
 
 - **TDD mandatory** — tests before implementation, coverage >= 85%.

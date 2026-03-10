@@ -1,4 +1,5 @@
 ---
+name: fairness-metrics
 description: MANDATORY when working on fairness metrics, bias analysis, or creating issues involving fairness concepts. Covers demographic parity, equalized odds, equal opportunity, predictive parity, and calibration — definitions, formulas, thresholds, and caveats.
 ---
 

@@ -28,14 +28,14 @@ These are instructions for the **orchestrator** (you). You manage the phases, pi
 
 ### Phase 2: Design (opus)
 4. Spawn `@python-developer` with `model: opus` to create a design document (approach, data models, test strategy).
-5. Spawn a **fresh opus agent** (not python-developer — a new general-purpose instance with `model: opus`) with an adversarial review prompt to try to break the design.
-6. If the reviewer finds issues, send them back to `@python-developer` (opus) to fix. Repeat steps 5-6 until the review passes.
+5. Spawn a **fresh `@python-developer`** with `model: opus` for ULTRACRITICAL adversarial review. The reviewer must be a python-developer (not general-purpose) because it needs language-specific knowledge to catch real issues. Use an adversarial prompt that demands NO STONE UNTURNED — check every AC mapping, every type, every edge case, every import, every pandas behavior assumption. Categorize findings as CRITICAL/MAJOR/MINOR.
+6. If the reviewer finds CRITICAL or MAJOR issues, send them back to `@python-developer` (opus) to fix. Repeat steps 5-6 until the review passes with zero CRITICAL and zero MAJOR issues.
 7. **Stop. Present design to human for approval.** Do not proceed until approved.
 
 ### Phase 3: Implementation (sonnet)
 8. Spawn `@python-developer` with `model: sonnet` to implement using TDD — tests FIRST (one per acceptance criterion), then implementation. Must run `pytest` and `ruff check` before completing.
-9. Spawn a **fresh opus agent** with an adversarial review prompt to try to break the code.
-10. If the reviewer finds issues, send them back to `@python-developer` (sonnet) to fix. Repeat steps 9-10 until the review passes.
+9. Spawn a **fresh `@python-developer`** with `model: opus` for ULTRACRITICAL adversarial code review. Same rules as design review: python-developer agent, not general-purpose. Demand the reviewer read every line of code, verify every test covers its AC, check for missing edge cases, validate types, and try to break the implementation.
+10. If the reviewer finds CRITICAL or MAJOR issues, send them back to `@python-developer` (sonnet) to fix. Repeat steps 9-10 until the review passes with zero CRITICAL and zero MAJOR issues.
 11. **Stop. Present implementation to human for approval.** Do not proceed until approved.
 
 ### Phase 4: PR
@@ -50,9 +50,9 @@ Use the right model for the right job. Always set `model` explicitly when spawni
 | Issue creation | business-analyst | opus | Requirements need precision and domain understanding |
 | Feasibility | python-developer | opus | Deep reasoning about scope and risks |
 | Design | python-developer | opus | Architectural decisions need depth |
-| Design review | fresh general-purpose | opus | Adversarial review needs cognitive depth + fresh eyes |
+| Design review | fresh python-developer | opus | Ultracritical review needs domain knowledge + cognitive depth + fresh eyes |
 | Implementation | python-developer | sonnet | Standard development work |
-| Code review | fresh general-purpose | opus | Adversarial review needs cognitive depth + fresh eyes |
+| Code review | fresh python-developer | opus | Ultracritical review needs domain knowledge + cognitive depth + fresh eyes |
 | Simple fixes | python-developer | haiku | Renaming, formatting, boilerplate |
 
 ## Standards

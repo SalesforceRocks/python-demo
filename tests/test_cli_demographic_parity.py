@@ -12,7 +12,6 @@ from click.testing import CliRunner
 from fairness_checker.cli import cli
 from fairness_checker.models import Dataset
 
-
 # ---------------------------------------------------------------------------
 # Fixture: tmp_csv_file factory
 # ---------------------------------------------------------------------------
@@ -51,7 +50,9 @@ def test_cli_pass_exit_code_ac9(tmp_csv_file) -> None:
     csv_path = tmp_csv_file(dataset)
     runner = CliRunner()
     result = runner.invoke(cli, ["demographic-parity", "--file", str(csv_path)])
-    assert result.exit_code == 0, f"Expected exit 0, got {result.exit_code}.\nOutput:\n{result.output}"
+    assert result.exit_code == 0, (
+        f"Expected exit 0, got {result.exit_code}.\nOutput:\n{result.output}"
+    )
 
 
 def test_cli_fail_exit_code_ac9(tmp_csv_file) -> None:
@@ -65,7 +66,9 @@ def test_cli_fail_exit_code_ac9(tmp_csv_file) -> None:
     csv_path = tmp_csv_file(dataset)
     runner = CliRunner()
     result = runner.invoke(cli, ["demographic-parity", "--file", str(csv_path)])
-    assert result.exit_code == 1, f"Expected exit 1, got {result.exit_code}.\nOutput:\n{result.output}"
+    assert result.exit_code == 1, (
+        f"Expected exit 1, got {result.exit_code}.\nOutput:\n{result.output}"
+    )
 
 
 def test_cli_output_format_ac9(tmp_csv_file) -> None:
@@ -92,7 +95,8 @@ def test_cli_output_format_ac9(tmp_csv_file) -> None:
 def test_cli_file_not_found_ac10() -> None:
     """AC10: CLI with nonexistent file produces error message and non-zero exit code."""
     runner = CliRunner()
-    result = runner.invoke(cli, ["demographic-parity", "--file", "/nonexistent/path/data.csv"])
+    result = runner.invoke(
+        cli, ["demographic-parity", "--file", "/nonexistent/path/data.csv"]
+    )
     assert result.exit_code != 0
-    # click.Path(exists=True) produces an error message about the invalid value
-    assert result.output != "" or result.exit_code != 0
+    assert "does not exist" in result.output or "Error" in result.output

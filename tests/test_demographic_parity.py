@@ -4,13 +4,12 @@ All tests are organized by acceptance criterion. Every AC maps to at least one t
 Tests are written FIRST (TDD) and verified to fail before implementation.
 """
 
-from datetime import UTC, timezone
+from datetime import UTC
 
 import pytest
 
 from fairness_checker.metrics import compute_demographic_parity, format_report
 from fairness_checker.models import Dataset, FairnessReport
-
 
 # ---------------------------------------------------------------------------
 # Fixtures
@@ -49,15 +48,6 @@ def three_group_dataset() -> Dataset:
 
     min=0.8, max=0.9, ratio=0.8/0.9 ≈ 0.8889 (pass at 0.8 threshold).
     """
-    predictions = (
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 0]  # 'a': 9/10 = 0.9
-        + [1, 1, 1, 1, 0, 0, 0, 0, 1, 1]  # 'b': 6/10... wait, need 8/10 = 0.8
-        + [1, 1, 1, 1, 1, 1, 1, 1, 1, 0]  # 'c': duplicate of 'a' data
-    )
-    # Let me rebuild to be precise:
-    # 'a': 9 out of 10 positive
-    # 'b': 8 out of 10 positive
-    # 'c': 17 out of 20 positive = 0.85
     predictions = (
         [1] * 9 + [0]  # 'a': 9/10 = 0.9
         + [1] * 8 + [0, 0]  # 'b': 8/10 = 0.8
@@ -215,7 +205,9 @@ def test_custom_threshold_pass_ac3() -> None:
     # 'a'=0.95, 'b'=1.0 => ratio = 0.95/1.0 = 0.95 >= 0.9
     predictions = [1] * 19 + [0] + [1] * 10
     group_labels = ["a"] * 20 + ["b"] * 10
-    dataset = Dataset(predictions=predictions, actuals=[0] * 30, group_labels=group_labels)
+    dataset = Dataset(
+        predictions=predictions, actuals=[0] * 30, group_labels=group_labels
+    )
     report = compute_demographic_parity(dataset, threshold=0.9)
     assert report.overall_pass is True
 
@@ -225,7 +217,9 @@ def test_custom_threshold_fail_ac3() -> None:
     # 'a'=0.8, 'b'=1.0 => ratio=0.8 < 0.9
     predictions = [1] * 8 + [0, 0] + [1] * 10
     group_labels = ["a"] * 10 + ["b"] * 10
-    dataset = Dataset(predictions=predictions, actuals=[0] * 20, group_labels=group_labels)
+    dataset = Dataset(
+        predictions=predictions, actuals=[0] * 20, group_labels=group_labels
+    )
     report = compute_demographic_parity(dataset, threshold=0.9)
     assert report.overall_pass is False
 
@@ -313,7 +307,11 @@ def test_all_groups_have_samples_ac7() -> None:
     datasets = [
         Dataset(predictions=[1, 0], actuals=[0, 0], group_labels=["x", "y"]),
         Dataset(predictions=[1, 1, 0], actuals=[0, 0, 0], group_labels=["a", "b", "c"]),
-        Dataset(predictions=[0, 0, 0, 0], actuals=[0, 0, 0, 0], group_labels=["p", "p", "q", "q"]),
+        Dataset(
+            predictions=[0, 0, 0, 0],
+            actuals=[0, 0, 0, 0],
+            group_labels=["p", "p", "q", "q"],
+        ),
     ]
     for ds in datasets:
         report = compute_demographic_parity(ds)
@@ -363,7 +361,7 @@ def test_format_report() -> None:
     assert "group_a" in output
     assert "group_b" in output
     assert "FAIL" in output
-    assert "0.6667" in output or "0.80" in output
+    assert "0.6667" in output
 
 
 # ---------------------------------------------------------------------------
@@ -375,7 +373,9 @@ def test_groups_sorted_alphabetically() -> None:
     """Design: Groups in FairnessReport are sorted alphabetically by group_name."""
     predictions = [1, 0, 1, 0, 1]
     group_labels = ["charlie", "alpha", "bravo", "alpha", "charlie"]
-    dataset = Dataset(predictions=predictions, actuals=[0] * 5, group_labels=group_labels)
+    dataset = Dataset(
+        predictions=predictions, actuals=[0] * 5, group_labels=group_labels
+    )
     report = compute_demographic_parity(dataset)
     names = [g.group_name for g in report.groups]
     assert names == sorted(names)
@@ -390,7 +390,10 @@ def test_report_has_utc_timestamp(two_group_dataset: Dataset) -> None:
     """Design: FairnessReport timestamp must be timezone-aware UTC."""
     report = compute_demographic_parity(two_group_dataset)
     assert report.timestamp.tzinfo is not None
-    assert report.timestamp.tzinfo == UTC or report.timestamp.utcoffset().total_seconds() == 0
+    assert (
+        report.timestamp.tzinfo == UTC
+        or report.timestamp.utcoffset().total_seconds() == 0
+    )
 
 
 # ---------------------------------------------------------------------------

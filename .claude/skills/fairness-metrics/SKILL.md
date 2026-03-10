@@ -1,3 +1,8 @@
+---
+description: Domain knowledge about algorithmic fairness metrics (demographic parity, equalized odds, equal opportunity, predictive parity, calibration). Load when working on fairness metric calculations, bias analysis, or issue creation involving fairness concepts.
+autoContext: always
+---
+
 # Fairness Metrics — Domain Knowledge
 
 ## Overview

@@ -33,6 +33,16 @@ Python CLI tool for analyzing ML model predictions for bias. Built as a demo pro
 - **Definition of Ready**: `docs/standards/definition-of-ready.md`
 - **Definition of Done**: `docs/standards/definition-of-done.md`
 
+## Model Selection
+
+Use the right model for the right job:
+
+- **Opus** — design work, adversarial reviews, architectural decisions. Anything requiring deep reasoning or critical evaluation.
+- **Sonnet** — standard development work: TDD implementation, code changes, debugging, refactoring.
+- **Haiku** — simple, mechanical tasks: renaming, formatting, boilerplate, straightforward bug fixes.
+
+When spawning review agents, always use `model: "opus"` for genuine critical depth.
+
 ## Non-Negotiables
 
 - **TDD mandatory** — tests before implementation, coverage >= 85%.

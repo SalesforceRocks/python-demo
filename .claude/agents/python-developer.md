@@ -1,6 +1,5 @@
 ---
 name: python-developer
-model: sonnet
 description: Python developer agent for design, TDD implementation, and self-review. Use for all development work on the fairness checker.
 tools: Read, Write, Edit, Bash, Grep, Glob, Agent, Skill, AskUserQuestion
 ---

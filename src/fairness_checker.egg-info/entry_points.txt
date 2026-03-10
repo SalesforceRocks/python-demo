@@ -1,0 +1,2 @@
+[console_scripts]
+fairness-checker = fairness_checker.cli:cli

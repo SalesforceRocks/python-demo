@@ -1,0 +1,11 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "command": ["bash", ".claude/hooks/scripts/validate-branch.sh"],
+        "description": "Validates branch name follows convention"
+      }
+    ]
+  }
+}

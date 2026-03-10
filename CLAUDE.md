@@ -29,13 +29,13 @@ These are instructions for the **orchestrator** (you). You manage the phases, pi
 ### Phase 2: Design (opus)
 4. Spawn `@python-developer` with `model: opus` to create a design document (approach, data models, test strategy).
 5. Spawn a **fresh `@python-developer`** with `model: opus` for ULTRACRITICAL adversarial review. The reviewer must be a python-developer (not general-purpose) because it needs language-specific knowledge to catch real issues. Use an adversarial prompt that demands NO STONE UNTURNED — check every AC mapping, every type, every edge case, every import, every pandas behavior assumption. Categorize findings as CRITICAL/MAJOR/MINOR.
-6. If the reviewer finds CRITICAL or MAJOR issues, send them back to `@python-developer` (opus) to fix. Repeat steps 5-6 until the review passes with zero CRITICAL and zero MAJOR issues.
+6. **ALL issues must be fixed** — CRITICAL, MAJOR, and MINOR. No exceptions, no deferrals, no technical debt. Send findings back to `@python-developer` (opus) to fix. Repeat steps 5-6 until the review passes with zero issues.
 7. **Stop. Present design to human for approval.** Do not proceed until approved.
 
 ### Phase 3: Implementation (sonnet)
 8. Spawn `@python-developer` with `model: sonnet` to implement using TDD — tests FIRST (one per acceptance criterion), then implementation. Must run `pytest` and `ruff check` before completing.
 9. Spawn a **fresh `@python-developer`** with `model: opus` for ULTRACRITICAL adversarial code review. Same rules as design review: python-developer agent, not general-purpose. Demand the reviewer read every line of code, verify every test covers its AC, check for missing edge cases, validate types, and try to break the implementation.
-10. If the reviewer finds CRITICAL or MAJOR issues, send them back to `@python-developer` (sonnet) to fix. Repeat steps 9-10 until the review passes with zero CRITICAL and zero MAJOR issues.
+10. **ALL issues must be fixed** — CRITICAL, MAJOR, and MINOR. No exceptions, no deferrals, no technical debt. Send findings back to `@python-developer` (sonnet) to fix. Repeat steps 9-10 until the review passes with zero issues.
 11. **Stop. Present implementation to human for approval.** Do not proceed until approved.
 
 ### Phase 4: PR
@@ -62,6 +62,7 @@ Use the right model for the right job. Always set `model` explicitly when spawni
 
 ## Non-Negotiables
 
+- **Zero technical debt** — fix ALL review findings (CRITICAL, MAJOR, and MINOR). No deferrals, no "acceptable for now."
 - **TDD mandatory** — tests before implementation, coverage >= 85%.
 - **Every acceptance criterion** must have a corresponding test.
 - **Use ruff** for linting, **pytest** for testing.

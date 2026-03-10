@@ -35,13 +35,11 @@ Python CLI tool for analyzing ML model predictions for bias. Built as a demo pro
 
 ## Model Selection
 
-Use the right model for the right job:
+Use the right model for the right job. When spawning agents, set the `model` parameter explicitly.
 
-- **Opus** — design work, adversarial reviews, architectural decisions. Anything requiring deep reasoning or critical evaluation.
-- **Sonnet** — standard development work: TDD implementation, code changes, debugging, refactoring.
-- **Haiku** — simple, mechanical tasks: renaming, formatting, boilerplate, straightforward bug fixes.
-
-When spawning review agents, always use `model: "opus"` for genuine critical depth.
+- **Opus** — design documents, adversarial reviews, architectural decisions, feasibility assessments. Anything requiring deep reasoning or critical evaluation.
+- **Sonnet** — standard development: TDD implementation, code changes, debugging, refactoring.
+- **Haiku** — simple mechanical tasks: renaming, formatting, boilerplate, straightforward bug fixes.
 
 ## Non-Negotiables
 

@@ -1,0 +1,30 @@
+{
+  "name": "python_demo",
+  "version": "1.0.0",
+  "description": "A Python CLI tool for analyzing ML model predictions for bias. It computes standard algorithmic fairness metrics (demographic parity, equalized odds, equal opportunity, predictive parity, calibration) across protected groups and reports whether thresholds are met.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SalesforceRocks/python-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SalesforceRocks/python-demo/issues"
+  },
+  "homepage": "https://github.com/SalesforceRocks/python-demo#readme",
+  "dependencies": {
+    "playwright": "^1.58.2",
+    "pptxgenjs": "^4.0.1",
+    "sharp": "^0.34.5"
+  }
+}

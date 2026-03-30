@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+body {
+  width: 720pt;
+  height: 405pt;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+}
+h2 {
+  color: #292929;
+  font-size: 28pt;
+  font-weight: bold;
+  margin: 20pt 50pt 8pt 50pt;
+  text-transform: uppercase;
+  letter-spacing: 2pt;
+}
+</style>
+</head>
+<body>
+<h2>The Full Pipeline</h2>
+<div style="position: absolute; top: 62pt; left: 0pt; right: 0pt; display: flex; flex-direction: column; align-items: center;">
+  <div style="display: flex; align-items: center; margin-bottom: 4pt;">
+    <div style="background-color: #292929; padding: 7pt 10pt; min-width: 80pt; text-align: center;">
+      <p style="color: #FFFFFF; font-size: 10pt; font-weight: bold; margin: 0;">BA Agent</p>
+    </div>
+    <p style="color: #292929; font-size: 14pt; margin: 0 6pt;">&#8594;</p>
+    <div style="border: 2pt solid #292929; padding: 7pt 10pt; min-width: 110pt; text-align: center;">
+      <p style="color: #292929; font-size: 10pt; margin: 0;">Issue (Def. of Ready)</p>
+    </div>
+    <p style="color: #292929; font-size: 14pt; margin: 0 6pt;">&#8594;</p>
+    <div style="background-color: #E33737; padding: 7pt 10pt; min-width: 100pt; text-align: center;">
+      <p style="color: #FFFFFF; font-size: 10pt; font-weight: bold; margin: 0;">Human Approves</p>
+    </div>
+  </div>
+  <p style="color: #292929; font-size: 16pt; margin: 1pt 0;">&#8595;</p>
+  <div style="display: flex; align-items: center; margin-bottom: 4pt;">
+    <div style="background-color: #292929; padding: 7pt 10pt; min-width: 80pt; text-align: center;">
+      <p style="color: #FFFFFF; font-size: 10pt; font-weight: bold; margin: 0;">Dev Agent</p>
+    </div>
+    <p style="color: #292929; font-size: 14pt; margin: 0 6pt;">&#8594;</p>
+    <div style="border: 2pt solid #292929; padding: 7pt 10pt; min-width: 110pt; text-align: center;">
+      <p style="color: #292929; font-size: 10pt; margin: 0;">Feasibility + Design</p>
+    </div>
+    <p style="color: #292929; font-size: 14pt; margin: 0 6pt;">&#8594;</p>
+    <div style="border: 2pt solid #E33737; padding: 7pt 10pt; min-width: 80pt; text-align: center;">
+      <p style="color: #E33737; font-size: 10pt; font-weight: bold; margin: 0;">Review Loop</p>
+    </div>
+    <p style="color: #292929; font-size: 14pt; margin: 0 6pt;">&#8594;</p>
+    <div style="background-color: #292929; padding: 7pt 10pt; min-width: 40pt; text-align: center; border-left: 3pt solid #E33737;">
+      <p style="color: #FFFFFF; font-size: 10pt; font-weight: bold; margin: 0;">PR</p>
+    </div>
+    <p style="color: #292929; font-size: 14pt; margin: 0 6pt;">&#8594;</p>
+    <div style="background-color: #E33737; padding: 7pt 10pt; min-width: 100pt; text-align: center;">
+      <p style="color: #FFFFFF; font-size: 10pt; font-weight: bold; margin: 0;">Human Reviews</p>
+      <p style="color: #FFFFFF; font-size: 8pt; margin: 2pt 0 0 0;">in GitHub</p>
+    </div>
+  </div>
+  <p style="color: #292929; font-size: 16pt; margin: 1pt 0;">&#8595;</p>
+  <div style="display: flex; align-items: center; margin-bottom: 4pt;">
+    <div style="background-color: #292929; padding: 7pt 10pt; min-width: 80pt; text-align: center;">
+      <p style="color: #FFFFFF; font-size: 10pt; font-weight: bold; margin: 0;">Dev Agent</p>
+    </div>
+    <p style="color: #292929; font-size: 14pt; margin: 0 6pt;">&#8594;</p>
+    <div style="border: 2pt solid #292929; padding: 7pt 10pt; min-width: 110pt; text-align: center;">
+      <p style="color: #292929; font-size: 10pt; margin: 0;">TDD Implementation</p>
+    </div>
+    <p style="color: #292929; font-size: 14pt; margin: 0 6pt;">&#8594;</p>
+    <div style="border: 2pt solid #E33737; padding: 7pt 10pt; min-width: 80pt; text-align: center;">
+      <p style="color: #E33737; font-size: 10pt; font-weight: bold; margin: 0;">Review Loop</p>
+    </div>
+    <p style="color: #292929; font-size: 14pt; margin: 0 6pt;">&#8594;</p>
+    <div style="background-color: #292929; padding: 7pt 10pt; min-width: 60pt; text-align: center; border-left: 3pt solid #E33737;">
+      <p style="color: #FFFFFF; font-size: 10pt; font-weight: bold; margin: 0;">Push to PR</p>
+    </div>
+    <p style="color: #292929; font-size: 14pt; margin: 0 6pt;">&#8594;</p>
+    <div style="background-color: #E33737; padding: 7pt 10pt; min-width: 100pt; text-align: center;">
+      <p style="color: #FFFFFF; font-size: 10pt; font-weight: bold; margin: 0;">Human Reviews</p>
+      <p style="color: #FFFFFF; font-size: 8pt; margin: 2pt 0 0 0;">in GitHub</p>
+    </div>
+  </div>
+</div>
+<div style="position: absolute; bottom: 20pt; left: 50pt; right: 50pt;">
+  <p style="color: #888888; font-size: 11pt; margin: 0; font-style: italic;">For the demo: review loops removed for speed</p>
+</div>
+</body>
+</html>

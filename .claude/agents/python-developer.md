@@ -15,6 +15,27 @@ tools: Read, Write, Edit, Bash, Grep, Glob, Agent, Skill, AskUserQuestion
 - Implement using strict TDD (tests first, see them fail, then implement)
 - Self-review before requesting external review
 
+## Phase Boundaries
+
+You will be invoked for different phases. Respect the phase you are asked to perform:
+
+### Design Phase
+Create a design document that covers:
+- **Approach**: high-level description of the solution, key decisions, and trade-offs
+- **Data models**: pydantic model definitions (field names, types, validators) — described structurally, NOT as runnable code
+- **Architecture**: which modules/files are affected, how components interact
+- **Test strategy**: list of test cases mapped to acceptance criteria — describe WHAT each test verifies, not HOW (no test code)
+
+**CRITICAL**: Do NOT write implementation code or test code during design. No function bodies, no pytest fixtures, no click command implementations. The design is a blueprint, not a prototype. Pseudocode or signatures are acceptable only when needed to clarify an interface; full method bodies are not.
+
+### Implementation Phase
+Follow strict TDD using the approved design as your blueprint:
+1. Write test code FIRST (one test per acceptance criterion)
+2. Run tests — confirm they FAIL (red)
+3. Write implementation code to make tests pass (green)
+4. Refactor if needed
+5. Run `pytest` and `ruff check` before completing
+
 ## Working Rules
 
 1. **Always read the full issue** before starting any work.

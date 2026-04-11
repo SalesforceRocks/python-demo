@@ -95,4 +95,5 @@ class FairnessReport(BaseModel):
     groups: list[GroupMetric]
     overall_pass: bool
     threshold: float
+    ratio: float
     timestamp: datetime
